@@ -9,9 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i < 200){
         grid.innerHTML += '<div></div>'
       } else{
-        grid.innerHTML += '<div class="taken">2</div>'
+        grid.innerHTML += '<div class="taken">2</div>'    //11
       }
+      
      }
+
+
 
     let squares = Array.from(document.querySelectorAll('.grid div'))
     const scoreDisplay = document.querySelector('#score')
@@ -68,19 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
   
     const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
   
-    let currentPosition = 4
-    let currentRotation = 0
+    let currentPosition = 4   //1
+    let currentRotation = 0 //7
   
     console.log(theTetrominoes[0][0])
   
     //randomly select a Tetromino and its first rotation
-    let random = Math.floor(Math.random()*theTetrominoes.length)
-    let current = theTetrominoes[random][currentRotation]
-  
+    let random = Math.floor(Math.random()*theTetrominoes.length) //5
+
+    //let current =  theTetrominoes[0][0] 이거부터 시작 //2
+    let current = theTetrominoes[random][currentRotation] //6 //8
     //draw the Tetromino
-    function draw() {
+    function draw() { //3
       current.forEach(index => {
-        squares[currentPosition + index].classList.add('tetromino')
+        squares[currentPosition + index].classList.add('tetromino') //4 -> draw() 로 실행되는지 확인 후 넘어가자
         squares[currentPosition + index].style.backgroundColor = colors[random]
       })
     }
@@ -88,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //undraw the Tetromino
     function undraw() {
       current.forEach(index => {
-        squares[currentPosition + index].classList.remove('tetromino')
+        squares[currentPosition + index].classList.remove('tetromino') //9
         squares[currentPosition + index].style.backgroundColor = ''
   
       })
@@ -109,6 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keyup', control)
   
     //move down function
+    // function moveDown() {
+    //   undraw()
+    //   currentPosition += width
+    //   draw()
+    // } 이거 먼저 테스트 해보기 //10
     function moveDown() {
       undraw()
       currentPosition += width
