@@ -84,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     //draw the Tetromino
     function draw() { //3
       current.forEach(index => {
+        console.log("인덱스 시작")
+        console.log(index)
         squares[currentPosition + index].classList.add('tetromino') //4 -> draw() 로 실행되는지 확인 후 넘어가자
         squares[currentPosition + index].style.backgroundColor = colors[random]
       })
