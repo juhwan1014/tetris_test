@@ -2,14 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // var gd = document.getElementById("grid");
 
-    const grid = document.querySelector('.grid')
+    const grid = document.querySelector('.grid')                   //3
 
     for(let i = 0; i < 210; i++){
      
       if(i < 200){
         grid.innerHTML += '<div></div>'
       } else{
-        grid.innerHTML += '<div class="taken">2</div>'    //11
+        grid.innerHTML += '<div class="taken">2</div>'    
       }
       
      }
@@ -71,22 +71,22 @@ document.addEventListener('DOMContentLoaded', () => {
   
     const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
   
-    let currentPosition = 4   //1
-    let currentRotation = 0 //7
+    let currentPosition = 4   
+    let currentRotation = 0 
   
     console.log(theTetrominoes[0][0])
   
     //randomly select a Tetromino and its first rotation
-    let random = Math.floor(Math.random()*theTetrominoes.length) //5
+    let random = Math.floor(Math.random()*theTetrominoes.length) 
 
-    //let current =  theTetrominoes[0][0] 이거부터 시작 //2
-    let current = theTetrominoes[random][currentRotation] //6 //8
+    //let current =  theTetrominoes[0][0] 이거부터 시작 
+    let current = theTetrominoes[random][currentRotation] 
     //draw the Tetromino
-    function draw() { //3
+    function draw() { 
       current.forEach(index => {
         console.log("인덱스 시작")
         console.log(index)
-        squares[currentPosition + index].classList.add('tetromino') //4 -> draw() 로 실행되는지 확인 후 넘어가자
+        squares[currentPosition + index].classList.add('tetromino') 
         squares[currentPosition + index].style.backgroundColor = colors[random]
       })
     }
@@ -94,13 +94,20 @@ document.addEventListener('DOMContentLoaded', () => {
     //undraw the Tetromino
     function undraw() {
       current.forEach(index => {
-        squares[currentPosition + index].classList.remove('tetromino') //9
+        squares[currentPosition + index].classList.remove('tetromino') 
         squares[currentPosition + index].style.backgroundColor = ''
   
       })
     }
   
-    //assign functions to keyCodes
+
+
+
+// timerId = setInterval(moveDown, 1000) //0
+
+
+
+    //assign functions to keyCodes             //5
     function control(e) {
       if(e.keyCode === 37) {
         moveLeft()
@@ -119,7 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
     //   undraw()
     //   currentPosition += width
     //   draw()
-    // } 이거 먼저 테스트 해보기 //10
+    // } 이거 먼저 테스트 해보기 // 1
+
     function moveDown() {
       undraw()
       currentPosition += width
@@ -127,6 +135,36 @@ document.addEventListener('DOMContentLoaded', () => {
       freeze()
     }
   
+
+
+
+
+
+    // timerId = setInterval(moveDown, 1000) . //2
+
+
+    // function moveDown() {
+    //   undraw()
+    //   currentPosition += width
+    //   draw()
+    //   freeze()
+    // }
+
+    // function freeze() {
+    //   if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
+    //     current.forEach(index => squares[currentPosition + index].classList.add('taken'))
+    //     random = Math.floor(Math.random() * theTetrominoes.length)
+    //     current = theTetrominoes[random][currentRotation]
+    //     currentPosition = 4
+    //     draw()
+    //   }
+    // }
+
+
+
+
+
+
     //freeze function
     function freeze() {
       if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
@@ -143,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   
-    //move the tetromino left, unless is at the edge or there is a blockage
+    //move the tetromino left, unless is at the edge or there is a blockage       //4
     function moveLeft() {
       undraw()
       const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0)
@@ -154,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
       draw()
     }
   
-    //move the tetromino right, unless is at the edge or there is a blockage
+    //move the tetromino right, unless is at the edge or there is a blockage      //6
     function moveRight() {
       undraw()
       const isAtRightEdge = current.some(index => (currentPosition + index) % width === width -1)
@@ -191,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     
-    //rotate the tetromino
+    //rotate the tetromino                        //7
     function rotate() {
       undraw()
       currentRotation ++
@@ -199,20 +237,20 @@ document.addEventListener('DOMContentLoaded', () => {
         currentRotation = 0
       }
       current = theTetrominoes[random][currentRotation]
-      checkRotatedPosition()
+      checkRotatedPosition() .  //이이건  나나중중에
       draw()
     }
     /////////
   
     
     
-    //show up-next tetromino in mini-grid display
+    //show up-next tetromino in mini-grid display                            //9
     const displaySquares = document.querySelectorAll('.mini-grid div')
     const displayWidth = 4
     const displayIndex = 0
   
   
-    //the Tetrominos without rotations
+    //the Tetrominos without rotations   //10
     const upNextTetrominoes = [
       [1, displayWidth+1, displayWidth*2+1, 2], //lTetromino
       [0, displayWidth, displayWidth+1, displayWidth*2+1], //zTetromino
@@ -226,11 +264,11 @@ document.addEventListener('DOMContentLoaded', () => {
       //remove any trace of a tetromino form the entire grid
       displaySquares.forEach(square => {
         square.classList.remove('tetromino')
-        square.style.backgroundColor = ''
+        square.style.backgroundColor = '' //나나중중에에
       })
       upNextTetrominoes[nextRandom].forEach( index => {
         displaySquares[displayIndex + index].classList.add('tetromino')
-        displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom]
+        displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom]  //나나중에
       })
     }
   
