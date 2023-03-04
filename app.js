@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreDisplay = document.querySelector('#score')
     const startBtn = document.querySelector('#start-button')
     const width = 10
-    let nextRandom = 0
+    let nextRandom = 0  //12
     let timerId
     let score = 0
     const colors = [
@@ -170,12 +170,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
         current.forEach(index => squares[currentPosition + index].classList.add('taken'))
         //start a new tetromino falling
-        random = nextRandom
-        nextRandom = Math.floor(Math.random() * theTetrominoes.length)
+        random = nextRandom                               //13
+        nextRandom = Math.floor(Math.random() * theTetrominoes.length)       //14
         current = theTetrominoes[random][currentRotation]
         currentPosition = 4
         draw()
-        displayShape()
+        displayShape()     //15
         addScore()
         gameOver()
       }
@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayWidth = 4
     const displayIndex = 0
   
+
   
     //the Tetrominos without rotations   //10
     const upNextTetrominoes = [
@@ -259,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
       [1, displayWidth+1, displayWidth*2+1, displayWidth*3+1] //iTetromino
     ]
   
-    //display the shape in the mini-grid display
+    //display the shape in the mini-grid display              //11
     function displayShape() {
       //remove any trace of a tetromino form the entire grid
       displaySquares.forEach(square => {
@@ -267,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         square.style.backgroundColor = '' //나나중중에에
       })
       upNextTetrominoes[nextRandom].forEach( index => {
-        displaySquares[displayIndex + index].classList.add('tetromino')
+        displaySquares[displayIndex + index].classList.add('tetromino')    //16
         displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom]  //나나중에
       })
     }
